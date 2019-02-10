@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com</groupId>
+	<artifactId>flink-example</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+	<description />
+
+	<properties>
+		<flink>1.7.1</flink>
+		<junit>4.12</junit>
+		<guava.version>26.0-jre</guava.version>
+		<sl4j.version>1.7.25</sl4j.version>
+		<jdk>1.8</jdk>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-streaming-java_2.12</artifactId>
+			<version>${flink}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-java</artifactId>
+			<version>${flink}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-test-utils-junit</artifactId>
+			<version>${flink}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+
+	<build>
+		<finalName>flink-example</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>package</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+					
+					<!-- ComputingWords -->
+					<execution>
+						<id>ComputingWords</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>ComputingWords</classifier>
+							<archive>
+								<manifestEntries>
+									<program-class>com.flink.example.wordcount.server.ComputingWords</program-class>
+								</manifestEntries>
+							</archive>
+
+							<includes>
+								<include>com/flink/example/wordcount/server/ComputingWords.class</include>
+								<include>com/flink/example/wordcount/server/ComputingWords$*.class</include>
+							</includes>
+						</configuration>
+					</execution>
+					
+					<!-- Computing Words using 2 connecting steams -->
+					<execution>
+						<id>Connect2StreamsComputingWords</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>Connect2StreamsComputingWords</classifier>
+							<archive>
+								<manifestEntries>
+									<program-class>com.flink.example.connect.wordcount.server.ComputingWords</program-class>
+								</manifestEntries>
+							</archive>
+
+							<includes>
+								<include>com/flink/example/connect/wordcount/server/ComputingWords.class</include>
+								<include>com/flink/example/connect/wordcount/server/ComputingWords$*.class</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk}</source>
+					<target>${jdk}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>false</skipTests>
+					<includes>
+						<includes>**/*Test.java</includes>
+					</includes>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
+
+
