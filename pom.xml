@@ -137,6 +137,62 @@
 							</includes>
 						</configuration>
 					</execution>
+					
+					<!-- count word with state -->
+					<execution>
+						<id>statewordcount</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>statewordcount</classifier>
+							<archive>
+								<manifestEntries>
+									<program-class>com.flink.example.wordcount.state.server.WordsCounter</program-class>
+								</manifestEntries>
+							</archive>
+
+							<includes>
+								<include>com/flink/example/wordcount/state/server/WordsCounter.class</include>
+								<include>com/flink/example/wordcount/state/server/WordsCounter$*.class</include>
+								<include>com/flink/example/wordcount/state/server/WordStateProcessor.class</include>
+								<include>com/flink/example/wordcount/state/server/WordStateProcessor$*.class</include>
+								<include>com/flink/example/wordcount/state/server/CountWithTimestamp.class</include>
+								<include>com/flink/example/wordcount/state/server/CountWithTimestamp$*.class</include>
+							</includes>
+						</configuration>
+					</execution>
+					
+					<!-- count word with state -->
+					<execution>
+						<id>stocktrading</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>stocktrading</classifier>
+							<archive>
+								<manifestEntries>
+									<program-class>com.flink.example.trading.state.server.TradeStreaming</program-class>
+								</manifestEntries>
+							</archive>
+
+							<includes>
+								<include>com/flink/example/trading/state/server/TradeStreaming.class</include>
+								<include>com/flink/example/trading/state/server/TradeStreaming$*.class</include>
+								<include>com/flink/example/trading/state/server/TradeProcessing.class</include>
+								<include>com/flink/example/trading/state/server/TradeProcessing$*.class</include>
+								<include>com/flink/example/trading/state/server/BuyStock.class</include>
+								<include>com/flink/example/trading/state/server/BuyStock$*.class</include>
+								<include>com/flink/example/trading/state/server/StockPrices.class</include>
+								<include>com/flink/example/trading/state/server/StockPrices$*.class</include>
+								<include>com/flink/example/trading/state/server/SoldOutStock.class</include>
+								<include>com/flink/example/trading/state/server/SoldOutStock$*.class</include>
+							</includes>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 

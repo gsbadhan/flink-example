@@ -1,5 +1,4 @@
 1. start 2 TCP server using netcat tool. this is command: "nc -l 127.0.0.1 7001" and "nc -l 127.0.0.1 7002"
-2. start flink server
+2. start flink server using "/bin/start-cluster.sh"
 3. buid flink-example project using "mvn clean install"
-4. start flink server using "/bin/start-cluster.sh"
-5. go to "bin" directory of flink and execute "./flink run flink-example-Connect2StreamsComputingWords.jar"
+4. go to "bin" directory of flink and execute "./flink run flink-example-Connect2StreamsComputingWords.jar"
