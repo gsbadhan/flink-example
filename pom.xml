@@ -93,7 +93,7 @@
 							<goal>test-jar</goal>
 						</goals>
 					</execution>
-					
+
 					<!-- ComputingWords -->
 					<execution>
 						<id>ComputingWords</id>
@@ -115,7 +115,7 @@
 							</includes>
 						</configuration>
 					</execution>
-					
+
 					<!-- Computing Words using 2 connecting steams -->
 					<execution>
 						<id>Connect2StreamsComputingWords</id>
@@ -137,7 +137,7 @@
 							</includes>
 						</configuration>
 					</execution>
-					
+
 					<!-- count word with state -->
 					<execution>
 						<id>statewordcount</id>
@@ -163,7 +163,7 @@
 							</includes>
 						</configuration>
 					</execution>
-					
+
 					<!-- count word with state -->
 					<execution>
 						<id>stocktrading</id>

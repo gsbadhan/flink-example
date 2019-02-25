@@ -2,6 +2,7 @@ package com.flink.example.trading.state.server;
 
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
+import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.co.CoProcessFunction;
 import org.apache.flink.util.Collector;
@@ -14,8 +15,10 @@ public class TradeProcessing extends CoProcessFunction<StockPrices, BuyStock, So
 
 	@Override
 	public void open(Configuration parameters) throws Exception {
-		stockPricesState = getRuntimeContext()
-				.getState(new ValueStateDescriptor<>("stockPricesState", StockPrices.class));
+		ValueStateDescriptor<StockPrices> stateDescriptor = new ValueStateDescriptor<>("stockPricesState",
+				TypeInformation.of(StockPrices.class));
+		stateDescriptor.setQueryable("stock-status");
+		stockPricesState = getRuntimeContext().getState(stateDescriptor);
 	}
 
 	@Override
@@ -40,7 +43,7 @@ public class TradeProcessing extends CoProcessFunction<StockPrices, BuyStock, So
 		listedStock.setQuantity(listedStock.getQuantity() - buyStock.getQuantity());
 		// if all quantity sold out, make stock unlisted
 		if (listedStock.getQuantity() == 0) {
-			stockPricesState.update(null);
+			stockPricesState.clear();
 		} else {
 			stockPricesState.update(listedStock);
 		}
