@@ -9,7 +9,7 @@
 	<description />
 
 	<properties>
-		<flink>1.7.1</flink>
+		<flink>1.8.0</flink>
 		<junit>4.12</junit>
 		<guava.version>26.0-jre</guava.version>
 		<sl4j.version>1.7.25</sl4j.version>
@@ -17,6 +17,12 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-kafka_2.12</artifactId>
+			<version>${flink}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
@@ -193,8 +199,34 @@
 							</includes>
 						</configuration>
 					</execution>
+
+					<!-- FetchEvents from kafka -->
+					<execution>
+						<id>FetchEvents</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>FetchEvents</classifier>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifestEntries>
+									<program-class>com.flink.example.kafka.consumer.FetchEvents</program-class>
+								</manifestEntries>
+							</archive>
+
+							<includes>
+								<include>com/flink/example/kafka/consumer/FetchEvents.class</include>
+								<include>com/flink/example/kafka/consumer/FetchEvents$*.class</include>
+							</includes>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
+
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

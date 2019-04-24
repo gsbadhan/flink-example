@@ -1,0 +1,5 @@
+1. start kafka broker at localhost:9092 and zookeeper
+2. create kafka topic : testkeyhash
+3. start flink server using "/bin/start-cluster.sh"
+4. buid flink-example project using "mvn clean install" (Note: make fat jar; its not covered in this exmaple)
+5. go to "bin" directory of flink and execute "./flink run flink-example-FetchEvents.jar"
