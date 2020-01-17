@@ -1,0 +1,6 @@
+1. start TCP server using netcat tool. this is command: "nc -l 127.0.0.1 7001"
+2. start flink server application locally - run main class
+
+event pattern:
+1001 event1001
+1002 event1002

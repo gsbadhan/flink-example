@@ -9,11 +9,11 @@
 	<description />
 
 	<properties>
-		<flink>1.8.0</flink>
+		<flink>1.9.1</flink>
 		<junit>4.12</junit>
 		<guava.version>26.0-jre</guava.version>
 		<sl4j.version>1.7.25</sl4j.version>
-		<jdk>1.8</jdk>
+		<jdk>11</jdk>
 	</properties>
 
 	<dependencies>
@@ -34,6 +34,13 @@
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-java</artifactId>
+			<version>${flink}</version>
+		</dependency>
+
+		
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-clients_2.12</artifactId>
 			<version>${flink}</version>
 		</dependency>
 
