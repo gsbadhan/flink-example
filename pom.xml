@@ -11,7 +11,7 @@
 	<properties>
 		<flink>1.9.1</flink>
 		<junit>4.12</junit>
-		<guava.version>26.0-jre</guava.version>
+		<guava.version>29.0-jre</guava.version>
 		<sl4j.version>1.7.25</sl4j.version>
 		<jdk>11</jdk>
 	</properties>
